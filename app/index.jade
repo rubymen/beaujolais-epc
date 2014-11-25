@@ -1,0 +1,47 @@
+doctype html
+html(ng-app='app')
+  head
+    meta(charset='utf-8')
+    title EPC
+    base(href='/')
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width')
+
+    // build:css(.) styles/vendor.css
+    // bower:css
+    link(rel='stylesheet', href='bower_components/AngularJS-Toaster/toaster.css')
+    // endbower
+    // endbuild
+
+    // build:css(dist) styles/stylesheets.css
+    link(href='styles/app.css', rel='stylesheet')
+    // endbuild
+
+  body(ng-controller='AppController')
+    toaster-container
+
+    div(ui-view)
+
+    // build:js(.) scripts/vendor.js
+    // bower:js
+    script(src='bower_components/jquery/dist/jquery.js')
+    script(src='bower_components/angular/angular.js')
+    script(src='bower_components/angular-animate/angular-animate.js')
+    script(src='bower_components/angular-local-storage/dist/angular-local-storage.js')
+    script(src='bower_components/angular-sanitize/angular-sanitize.js')
+    script(src='bower_components/angular-ui-router/release/angular-ui-router.js')
+    script(src='bower_components/AngularJS-Toaster/toaster.js')
+    script(src='bower_components/lodash/dist/lodash.compat.js')
+    script(src='bower_components/restangular/dist/restangular.js')
+    // endbower
+    // endbuild
+
+    // build:js(app) scripts/scripts.js
+    script(src='scripts/app.js')
+    script(src='scripts/app-controller.js')
+    script(src='scripts/global.js')
+
+    script(src='scripts/global/global-module.js')
+    script(src='scripts/global/global-constants.js')
+    script(src='scripts/global/global-services.js')
+    // endbuild

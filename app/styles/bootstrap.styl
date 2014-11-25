@@ -1,0 +1,69 @@
+$turquoise      = #1abc9c
+$green-sea      = #16a085
+
+$emerald        = #2ecc71
+$nephritis      = #27ae60
+
+$peter-river    = #3498db
+$belize-hole    = #2980b9
+
+$amethyst       = #9b59b6
+$wisteria       = #8e44ad
+
+$wet-asphalt    = #34495e
+$midnight-blue  = #2c3e50
+
+$sun-flower     = #f1c40f
+$orange         = #f39c12
+
+$carrot         = #e67e22
+$pumpkin        = #d35400
+
+$alizarin       = #e74c3c
+$pomegranate    = #c0392b
+
+$clouds         = #ecf0f1
+$silver         = #bdc3c7
+
+$concrete       = #95a5a6
+$asbestos       = #7f8c8d
+
+$white          = #FEFEFE
+$black          = #222222
+$light-black    = lighten($black, 10%)
+$gray           = darken(invert($black), 30%)
+$light-gray     = #F5F5F5
+
+$colors = "turquoise" $turquoise, "green-sea" $green-sea, "emerald" $emerald, "nephritis" $nephritis, "peter-river" $peter-river, "belize-hole" $belize-hole, "amethyst" $amethyst, "wisteria" $wisteria, "wet-asphalt" $wet-asphalt, "midnight-blue" $midnight-blue, "sun-flower" $sun-flower, "orange" $orange, "carrot" $carrot, "pumpkin" $pumpkin, "alizarin" $alizarin, "pomegranate" $pomegranate, "clouds" $clouds, "silver" $silver, "concrete" $concrete, "asbestos" $asbestos, "white" $white, "black" $black, "light-black" $light-black, "gray" $gray, "light-gray" $light-gray
+
+$brand-primary  = $wet-asphalt
+$brand-success  = $emerald
+$brand-warning  = $sun-flower
+$brand-danger   = $alizarin
+$brand-info     = $peter-river
+
+for $color in $colors
+  .{$color[0]}
+    background-color $color[1]
+
+    &.transparent
+      background-color rgba($color[1], 0.8)
+
+  .text-{$color[0]}
+    color $color[1]
+
+
+// Buttons
+
+@import "../../bower_components/bootstrap-stylus/stylus/bootstrap.styl"
+
+.form-control
+  border 2px solid transparent
+  box-shadow none
+  color $text-color
+  background-color rgba(0, 0, 0, 0.05)
+  cursor inherit
+
+  &:focus
+    box-shadow none
+    border-color $turquoise
