@@ -26,11 +26,27 @@ angular.module('app.module', ['ui.router'])
               if (form.$valid) {
                 AuthService.login($scope.login).then(function() {
                   toaster.pop('success', '', 'Vous êtes connecté');
+                  $state.go('dashboard');
                 });
               }
             }
           }
         ]
+      })
+
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'views/dashboard.html',
+        controller: [
+          '$log',
+          '$scope',
+
+          function(
+            $log,
+            $scope
+          ) {}
+        ],
+        bodyClass: 'peter-river'
       })
     ;
   }])

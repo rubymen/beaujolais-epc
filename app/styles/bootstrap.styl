@@ -46,6 +46,15 @@ for $color in $colors
   .{$color[0]}
     background-color $color[1]
 
+    if lightness($color[1]) > 80%
+      color $black
+
+    else
+      color $white
+
+      .form-control
+        color $white
+
     &.transparent
       background-color rgba($color[1], 0.8)
 

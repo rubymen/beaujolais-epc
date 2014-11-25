@@ -17,7 +17,7 @@ html(ng-app='app')
     link(href='styles/app.css', rel='stylesheet')
     // endbuild
 
-  body(ng-controller='AppController')
+  body(class='{{bodyClass}}', ng-controller='AppController')
     toaster-container
 
     div(ui-view)

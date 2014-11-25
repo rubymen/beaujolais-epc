@@ -54,11 +54,11 @@ angular.module('app.services', [])
           login: function(model) {
             var deferred = $q.defer();
 
-            Restangular.all('users/signup').post(model).then(
+            Restangular.all('users/sign_in').post({ user: model }).then(
               function(data) {
                 var user = data.plain();
 
-                localStorageService.set('user', user);
+                localStorageService.set('user', user.success);
                 deferred.resolve(user);
               },
               function() {

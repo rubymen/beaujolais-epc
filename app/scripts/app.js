@@ -15,6 +15,7 @@ angular.module('app', [
       '$urlRouterProvider',
       '$locationProvider',
       'localStorageServiceProvider',
+      'RestangularProvider',
       'API_BASE_URL',
 
       function(
@@ -22,6 +23,7 @@ angular.module('app', [
         $urlRouterProvider,
         $locationProvider,
         localStorageServiceProvider,
+        RestangularProvider,
         API_BASE_URL
       ) {
         $httpProvider.interceptors.push('errorHttpInterceptor');
@@ -31,6 +33,9 @@ angular.module('app', [
         $locationProvider.html5Mode(true);
 
         localStorageServiceProvider.setPrefix('epc-v1.0.0');
+
+        RestangularProvider.setBaseUrl(API_BASE_URL);
+        RestangularProvider.setRequestSuffix('.json');
       }
     ]
   )
@@ -39,11 +44,13 @@ angular.module('app', [
     [
       '$log',
       '$rootScope',
+      '$state',
       'toaster',
 
       function(
         $log,
         $rootScope,
+        $state,
         toaster
       ) {
         $rootScope.$on('not_authorized', function() {
@@ -53,6 +60,22 @@ angular.module('app', [
 
         $rootScope.$on('not_found', function() {
           toaster.pop('error', '', 'La ressource n\'a pas été trouvée');
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+          var bodyClass = '', state, tmpState;
+
+          state = toState.name.split('.');
+
+          for (var i = state.length; i > 0; i--) {
+            tmpState = state.slice(0, i).join('.');
+
+            if ($state.get(tmpState) && $state.get(tmpState).bodyClass) {
+              bodyClass += ' ' + $state.get(tmpState).bodyClass;
+            }
+          }
+
+          $rootScope.bodyClass = bodyClass;
         });
       }
     ]
