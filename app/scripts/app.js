@@ -3,6 +3,7 @@ angular.module('app', [
   'LocalStorageModule',
   'restangular',
   'ui.router',
+  'reCAPTCHA',
   'toaster',
 
   'app.module',
@@ -18,6 +19,7 @@ angular.module('app', [
       '$locationProvider',
       'localStorageServiceProvider',
       'RestangularProvider',
+      'reCAPTCHAProvider',
       'API_BASE_URL',
 
       function(
@@ -26,6 +28,7 @@ angular.module('app', [
         $locationProvider,
         localStorageServiceProvider,
         RestangularProvider,
+        reCAPTCHAProvider,
         API_BASE_URL
       ) {
         $httpProvider.interceptors.push('errorHttpInterceptor');
@@ -38,6 +41,8 @@ angular.module('app', [
 
         RestangularProvider.setBaseUrl(API_BASE_URL);
         RestangularProvider.setRequestSuffix('.json');
+
+        reCAPTCHAProvider.setPublicKey('6Lfdbv4SAAAAAFOTZdxGJelMcho0MFTvCnry4Gzg');
       }
     ]
   )

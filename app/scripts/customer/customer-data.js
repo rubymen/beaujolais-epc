@@ -26,7 +26,7 @@ angular.module('app.customerModule')
               }
             );
           } else {
-            AuthRestangular.all('manage/users').post(model).then(
+            Restangular.all('manage/users').post(model).then(
               function(data) {
                 deferred.resolve(data);
               },

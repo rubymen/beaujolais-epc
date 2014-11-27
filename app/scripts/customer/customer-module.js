@@ -14,6 +14,12 @@ angular.module('app.customerModule', ['ui.router'])
         templateUrl: 'views/customer/index.html',
         controller: 'CustomerIndexController'
       })
+
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'views/signup.html',
+        controller: 'SignupController'
+      })
     ;
   }])
 ;

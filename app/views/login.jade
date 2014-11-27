@@ -14,6 +14,12 @@
           label.control-label(for='password') Mot de passe
           input#password.form-control(name='password', ng-model='login.password', ng-required='true', type='password')
 
+        .form-group(ng-if='captcha')
+          div(ng-model='login.captcha', re-captcha)
+
       .row
-        .col-sm-8.col-sm-offset-2
+        .col-sm-6.col-sm-offset-3
           button.btn.btn-success.btn-block.btn-lg(ng-click='send(loginForm)', ng-disabled='loginForm.$invalid') Connexion
+
+        .col-sm-3.text-right
+          a.btn.btn-success.btn-lg(ui-sref='signup') Inscription

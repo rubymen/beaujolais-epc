@@ -20,14 +20,27 @@ angular.module('app.module', ['ui.router'])
             toaster,
             AuthService
           ) {
+            var nbError = 0;
+
             localStorageService.clearAll();
+
+            $scope.captcha = false;
 
             $scope.send = function(form) {
               if (form.$valid) {
-                AuthService.login($scope.login).then(function() {
-                  toaster.pop('success', '', 'Vous êtes connecté');
-                  $state.go('dashboard');
-                });
+                AuthService.login($scope.login).then(
+                  function() {
+                    toaster.pop('success', '', 'Vous êtes connecté');
+                    $state.go('dashboard');
+                  },
+                  function() {
+                    nbError++;
+
+                    if (nbError >= 5) {
+                      $scope.captcha = true;
+                    }
+                  }
+                );
               }
             }
           }

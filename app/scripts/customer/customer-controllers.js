@@ -4,7 +4,6 @@ angular.module('app.customerModule')
     [
       '$log',
       '$scope',
-      '$state',
       'localStorageService',
       'toaster',
       'AuthService',
@@ -13,7 +12,6 @@ angular.module('app.customerModule')
       function(
         $log,
         $scope,
-        $state,
         localStorageService,
         toaster,
         AuthService,
@@ -47,6 +45,49 @@ angular.module('app.customerModule')
               toaster.pop('success', '', 'Vous allez recevoir un email de réinitialisation du mot de passe');
             }
           );
+        };
+      }
+    ]
+  )
+
+  .controller(
+    'SignupController',
+    [
+      '$log',
+      '$scope',
+      '$state',
+      'toaster',
+      'AuthService',
+      'customerData',
+
+      function(
+        $log,
+        $scope,
+        $state,
+        toaster,
+        AuthService,
+        customerData
+      ) {
+        $scope.customer = {
+          type: 'Customer'
+        };
+
+        $scope.save = function(form) {
+          if (form.$valid) {
+            customerData.saveOne({ user: $scope.customer }).then(
+              function(data) {
+                var user = data.plain();
+
+                localStorageService.set('user', user);
+
+                $scope.openForm();
+
+                toaster.pop('success', '', 'Création du compte réussie');
+
+                $state.go('dashboard');
+              }
+            );
+          }
         };
       }
     ]
