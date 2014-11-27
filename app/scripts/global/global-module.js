@@ -46,7 +46,8 @@ angular.module('app.module', ['ui.router'])
             $scope
           ) {}
         ],
-        bodyClass: 'peter-river'
+        bodyClass: 'clouds',
+        protected: true
       })
     ;
   }])

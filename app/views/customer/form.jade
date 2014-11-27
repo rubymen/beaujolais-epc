@@ -1,0 +1,22 @@
+.container-fluid.phxl.pvxl
+  form(name='customerForm', novalidate)
+    .row
+      .col-sm-6
+        .form-group(ng-class='{ "has-error": customerForm.firstname.$dirty && customerForm.firstname.$invalid }')
+          label.control-label(for='firstname') Prénom
+          input#firstname.form-control(name='firstname', ng-model='customer.firstname', ng-required='true', type='text')
+
+      .col-sm-6
+        .form-group(ng-class='{ "has-error": customerForm.lastname.$dirty && customerForm.lastname.$invalid }')
+          label.control-label(for='lastname') Nom
+          input#lastname.form-control(name='lastname', ng-model='customer.lastname', ng-required='true', type='text')
+
+    .row
+      .col-sm-12
+        .form-group(ng-class='{ "has-error": customerForm.email.$dirty && customerForm.email.$invalid }')
+          label.control-label(for='email') Email
+          input#email.form-control(name='email', ng-model='customer.email', ng-required='true', type='email')
+
+    .row
+      .col-sm-12
+        button.btn.btn-success(ng-click='save(customerForm)', ng-disabled='customerForm.$invalid') Valider

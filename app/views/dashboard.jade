@@ -1,4 +1,5 @@
-.container-fluid
-  .row
-    .col-sm-12.text-center.mtxl
-      h1 {{currentUser.firstname}} {{currentUser.lastname}}
+.pos-absolute-center.text-center
+  h1 {{currentUser.firstname}} {{currentUser.lastname}}
+
+  a.btn.btn-success.btn-inverse.btn-lg.mrm(ui-sref='me.index') Mon profil
+  a.btn.btn-danger.btn-inverse.btn-lg(ui-sref='login') Se déconnecter

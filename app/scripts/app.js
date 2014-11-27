@@ -7,7 +7,9 @@ angular.module('app', [
 
   'app.module',
   'app.constants',
-  'app.services'
+  'app.services',
+
+  'app.customerModule'
 ])
   .config(
     [
@@ -46,13 +48,19 @@ angular.module('app', [
       '$rootScope',
       '$state',
       'toaster',
+      'AuthService',
 
       function(
         $log,
         $rootScope,
         $state,
-        toaster
+        toaster,
+        AuthService
       ) {
+        $rootScope.$on('not_created', function() {
+          toaster.pop('warning', '', 'La modification n\'a pas été effectuée');
+        });
+
         $rootScope.$on('not_authorized', function() {
           toaster.pop('error', '', 'Cette page ne vous est pas autorisée');
           $state.go('login');
@@ -70,8 +78,14 @@ angular.module('app', [
           for (var i = state.length; i > 0; i--) {
             tmpState = state.slice(0, i).join('.');
 
-            if ($state.get(tmpState) && $state.get(tmpState).bodyClass) {
-              bodyClass += ' ' + $state.get(tmpState).bodyClass;
+            if ($state.get(tmpState)) {
+              if ($state.get(tmpState).bodyClass) {
+                bodyClass += ' ' + $state.get(tmpState).bodyClass;
+              }
+
+              if ($state.get(tmpState).protected && !AuthService.isLoggedIn()) {
+                $rootScope.$broadcast('not_authorized');
+              }
             }
           }
 

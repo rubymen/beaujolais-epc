@@ -13,10 +13,10 @@ angular.module('app')
         localStorageService,
         AuthService
       ) {
-        $scope.$watch(AuthService.isLoggedIn, function(isLoggedIn) {
-          $scope.isLoggedIn   = isLoggedIn;
-          $scope.currentUser  = AuthService.currentUser();
-        });
+        $scope.$watch(AuthService.currentUser, function(currentUser) {
+          $scope.isLoggedIn   = AuthService.isLoggedIn();
+          $scope.currentUser  = currentUser;
+        }, true);
       }
     ]
   )

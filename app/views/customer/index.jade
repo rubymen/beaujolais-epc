@@ -1,0 +1,14 @@
+.container-fluid.phn
+  .row
+    .col-sm-12
+      .form-colored(ng-include="'views/customer/form.html'")
+
+      .container
+        .row
+          .col-sm-12.mtl
+            h2 {{customer.firstname}} {{customer.lastname}}
+            p.lead {{customer.email}}
+
+            button.btn.btn-info.mrm(ng-click='openForm()') Modifier
+            button.btn.btn-info.mrm(ng-click='resetPassword()') Réinitialiser mon mot de passe
+            button.btn.btn-default.pull-right(ui-sref='dashboard') Retour au dashboard

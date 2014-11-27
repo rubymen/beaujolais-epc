@@ -42,6 +42,21 @@ $brand-warning  = $sun-flower
 $brand-danger   = $alizarin
 $brand-info     = $peter-river
 
+.btn-inverse
+  &.btn-success
+    color darken($brand-success, 5%)
+    background-color transparent
+
+    &:hover
+      color $btn-success-color
+
+  &.btn-danger
+    color darken($brand-danger, 5%)
+    background-color transparent
+
+    &:hover
+      color $btn-danger-color
+
 for $color in $colors
   .{$color[0]}
     background-color $color[1]

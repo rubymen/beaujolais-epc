@@ -17,6 +17,11 @@ angular.module('app.services', [])
       ) {
         return Restangular.withConfig(function(RestangularConfigurer) {
           RestangularConfigurer.setBaseUrl(API_BASE_URL);
+
+          RestangularConfigurer.setDefaultHeaders({
+            'X-User-Token': AuthService.currentUser().authentication_token,
+            'X-User-Email': AuthService.currentUser().email
+          });
         });
       }
     ]
@@ -101,6 +106,7 @@ angular.module('app.services', [])
                 break;
 
               case 401:
+              case 0:
                 message = 'not_authorized';
                 break;
 
